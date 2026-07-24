@@ -1,11 +1,15 @@
-
+import Layout from './components/Layout';
+import Grid from './components/Grid';
+import Hero from './components/Hero';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Fitness Planner</h1>
-      {/* Add your components and routes here */}
-    </div>
+    <Layout>
+      <main>
+        <Hero />
+        <Grid  /> 
+      </main>
+    </Layout>
   );
 }
 
