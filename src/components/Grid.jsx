@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { workoutProgram as training_plan } from '../utils/index.js'
+import {workoutProgram as training_plan} from '../ultils/index.js'
 import WorkoutCard from './WorkoutCard.jsx'
 
 export default function Grid() {
