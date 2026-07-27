@@ -61,7 +61,8 @@ export default function Grid() {
 
                 if (workoutIndex === selectedWorkout) {
                     return (
-                        <WorkoutCard savedWeights={savedWorkouts?.[workoutIndex]?.weights} handleSave={handleSave} handleComplete={handleComplete} key={workoutIndex} trainingPlan={trainingPlan} type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum} />
+                        <WorkoutCard savedWeights={savedWorkouts?.[workoutIndex]?.weights} 
+                        handleSave={handleSave} handleComplete={handleComplete} key={workoutIndex} trainingPlan={trainingPlan} type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum} />
                     )
                 }
 

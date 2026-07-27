@@ -1,17 +1,34 @@
-import React from "react";
+import React,{useState} from "react";
 import Modal from "./Modal.jsx";
 
 export default function Workout(props) {
  
- const {trainingPlan,workoutIndex,type,dayNum,icon} = props
+ const {trainingPlan,workoutIndex,type,dayNum,icon, savedWeights, handleSave, handleComplete} = props
 
  const{warmup, workout} = trainingPlan || {}
 
- const showExerciseDescription = {name: ' Xenopsylla ', description: 'Cheopis '}
+ const {showExerciseDescription,setShowExerciseDescription} = useState(null)
+
+ const [weights,setWeights] = useState(savedWeights || {})
+
+ function handleAddWeight(title,weight){
+    console.log(title,weight)
+    const newObj = {
+        ...weights,
+        [title]: weight
+    }
+    setWeights(newObj)
+ }
+
+ // const showExerciseDescription = {name: ' Xenopsylla ', description: 'Cheopis '}
 
   return (
    <div className= "workout-container">
-    <Modal showExerciseDescription={showExerciseDescription} handleClosedModal={() => {}} />
+    {showExerciseDescription && (
+    <Modal showExerciseDescription={showExerciseDescription} handleClosedModal={() => {
+        setShowExerciseDescription(null)
+    }} />
+   )}
     <div className="workout-card card">
       <div className="plan-card-header">
         <p>Day {dayNum}</p>
@@ -47,7 +64,7 @@ export default function Workout(props) {
                             </div>
                             <p className="exercise-info">{warmupExercise.sets}</p>
                             <p className="exercise-info">{warmupExercise.reps}</p>
-                            <input className="weight-input" placeholder="N/A" disabled />
+                            <input value = {weights[warmupExercise.name] || ''} onChange={(e) => {handleAddWeight(warmupExercise.name, e.target.value)}} className="weight-input" placeholder="N/A" disabled />
                         </React.Fragment>
                     )
                 })}
@@ -86,8 +103,8 @@ export default function Workout(props) {
 
 
                 <div className="workout-buttons">
-                  <button>Save and Exit</button>
-                  <button disabled={true}>Complete Workout</button>
+                  <button onClick={() => (handleSave(workoutIndex, {weights}))}>Save and Exit</button>
+                  <button onClick={() => {handleComplete(workoutIndex, {weights})}}  disabled={true}>Complete Workout</button>
                 </div>
 
 
