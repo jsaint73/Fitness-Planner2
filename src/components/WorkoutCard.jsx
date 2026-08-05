@@ -104,7 +104,7 @@ export default function Workout(props) {
 
                 <div className="workout-buttons">
                   <button onClick={() => (handleSave(workoutIndex, {weights}))}>Save and Exit</button>
-                  <button onClick={() => {handleComplete(workoutIndex, {weights})}}  disabled={true}>Complete Workout</button>
+                  <button onClick={() => {handleComplete(workoutIndex, {weights})}}  disabled={Object.keys(weights).length !== workout.length}>Complete Workout</button>
                 </div>
 
 

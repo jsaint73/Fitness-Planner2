@@ -31,7 +31,16 @@ export default function Grid() {
         handleSave(index, newObj)
     }
 
-   
+   useEffect(() => {
+    if (!localStorage || !savedWorkouts) { return }
+       let savedData = {} 
+       if (localStorage.getItem('brogram')){
+        savedData = JSON.parse(localStorage.getItem('brogram'))
+       }
+
+       setSavedWorkouts(savedData)
+        
+   }, [])
 
     return (
         <div className="training-plan-grid">
